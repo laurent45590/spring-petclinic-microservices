@@ -167,7 +167,7 @@ pipeline {
                 }*/
             }
         }
-            stage('Deploy Artifact To Nexus') {
+               stage('Deploy Artifact To Nexus') {
                     when {
                         anyOf { branch 'master'; branch 'develop' }
                     }
@@ -211,25 +211,3 @@ pipeline {
                         }
                     }  
         }
-                        artifacts: [
-                            [artifactId: pom.artifactId,
-                            classifier: '',
-                            file: artifactPath,
-                            type: pom.packaging
-                            ],
-                            [artifactId: pom.artifactId,
-                            classifier: '',
-                            file: 'pom.xml',
-                            type: 'pom'
-                            ]
-                        ]
-                        )
-                    } else {
-                        error "*** File: ${artifactPath}, could not be found"
-                    }
-                }
-            }
-        }
-    }
-}
-
